@@ -26,7 +26,7 @@ from android.models import AndroidUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = AndroidUser
-        fields = ('url', 'name', 'score')
+        fields = ('url', 'name', 'score', 'id')
 
 
 
