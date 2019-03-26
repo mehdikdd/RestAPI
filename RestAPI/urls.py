@@ -18,17 +18,22 @@ from django.urls import path
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from rest_framework.permissions import IsAuthenticated  # <-- Here
+from rest_framework.permissions import IsAuthenticated, AllowAny  # <-- Here
+from android.models import AndroidUser
 # Serializers define the API representation.
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('url', 'username', 'email')
+        model = AndroidUser
+        fields = ('url', 'name', 'score')
+
+
 
 # ViewSets define the view behavior.
 class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
-    queryset = User.objects.all()
+    queryset = AndroidUser.objects.all()
     serializer_class = UserSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
